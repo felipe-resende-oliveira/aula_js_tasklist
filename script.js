@@ -58,6 +58,9 @@ function renderizarTarefas() {
 function removerTarefa(i) {
         tarefas.splice(i, 1)
         renderizarTarefas()
+        const mensagem = document.getElementById("mensagem")
+        mensagem.style.color = "#331F19"
+        mensagem.textContent = "Tarefa removida com sucesso!"
 
         if (tarefas.length == 0) {
                 botaoLimpar.style.display = "none"
@@ -71,6 +74,9 @@ function editarTarefa(i) {
         if(tarefaEditada.trim !== "" ) {
                 tarefas[i] = tarefaEditada
                 renderizarTarefas()
+                const mensagem = document.getElementById("mensagem")
+                mensagem.style.color = "#331F19"
+                mensagem.textContent = "Tarefa editada com sucesso!"
         }
 }
 function limparLista() {   
