@@ -1,4 +1,5 @@
 let tarefas = []
+const botaoLimpar = document.getElementById("botao-limpar")
 
 function adicionarTarefa() {
 
@@ -10,11 +11,12 @@ function adicionarTarefa() {
         if(tarefa == "") {
                 let mensagemErro = "Digite uma tarefa para adicioná-la a sua lista!"
                 mensagem.style.color = "#A34743"
-                mensagem.textContent = mensagemErro 
+                mensagem.textContent = mensagemErro
         } else {
                 let mensagemSucesso = "Tarefa adicionada com sucesso!";
                 mensagem.style.color = "#28A745"
                 mensagem.textContent = mensagemSucesso
+                botaoLimpar.style.display = "inline-block"
 
                 tarefas.push(tarefa)
                 renderizarTarefas()
@@ -44,15 +46,24 @@ function renderizarTarefas() {
                 botaoEditar.textContent = "Editar"
                 botaoEditar.onclick = () => editarTarefa(i)
 
+
                 novaTarefa.appendChild(botaoRemover)
                 novaTarefa.appendChild(botaoEditar)
                 listaTarefas.appendChild(novaTarefa)
+
         }
+
 }
 
 function removerTarefa(i) {
         tarefas.splice(i, 1)
         renderizarTarefas()
+
+        if (tarefas.length == 0) {
+                botaoLimpar.style.display = "none"
+        } else {
+                botaoLimpar.style.display = "inline-block"
+        }
 }
 
 function editarTarefa(i) {
@@ -62,8 +73,10 @@ function editarTarefa(i) {
                 renderizarTarefas()
         }
 }
-function limparLista() {
+function limparLista() {   
+
         tarefas.length = 0
+        botaoLimpar.style.display = "none"
         renderizarTarefas()
         const mensagem = document.getElementById("mensagem")
         mensagem.style.color = "#331F19"

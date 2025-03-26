@@ -101,6 +101,7 @@ button.editar:hover {
 }
 
 .botao_lista {
+    display: none;
     background-color: #A34743;
 }
 
